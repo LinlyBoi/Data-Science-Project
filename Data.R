@@ -11,4 +11,4 @@ CompCashCredit <- c(sum_cash,sum_credit)
 ages <- cbind(grocery_entries[6] , grocery_entries[3])
 sum_ages <- aggregate(total ~ age,ages,sum)
 #First Github Commitment! 23
-#Yousri drinking tea
+#Don't be lazy swelam --Yousri
