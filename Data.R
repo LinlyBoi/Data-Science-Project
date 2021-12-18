@@ -10,4 +10,4 @@ CompCashCredit <- c(sum_cash,sum_credit)
 #please visualise the data I am lazy - Sewelam
 ages <- cbind(grocery_entries[6] , grocery_entries[3])
 sum_ages <- aggregate(total ~ age,ages,sum)
-#First Github Commitment! 2
+#First Github Commitment! 23
