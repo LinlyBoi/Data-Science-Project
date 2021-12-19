@@ -26,8 +26,8 @@ barplot(CompCashCredit,names.arg = c('Cash','Credit'),horiz = FALSE,col = c(rgb(
 
 
 #Compare between ages and their total spent (Youssri)
-ages <- cbind(grocery_entries[6] , grocery_entries[3])
-sum_ages <- aggregate(total ~ age,ages,sum)
+age <- cbind(grocery_entries[6] , grocery_entries[3])
+sum_ages <- aggregate(total ~ age,age,sum)
 plot(sum_ages)
 
 
@@ -36,5 +36,9 @@ plot(sum_ages)
 
 
 
-
-
+#kmeans --Yousri
+name_total_age<-cbind(grocery_entries[5],grocery_entries[3],grocery_entries[6])
+#x<-readline()
+keameans<-cbind(grocery_entries[3],grocery_entries[6])
+result<-kmeans(keameans,centers = 10)
+final_result<-cbind(name_total_age,result$cluster)
