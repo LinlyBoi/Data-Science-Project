@@ -5,7 +5,7 @@
 
 # Loading package
 #library(ClusterR)
-library(cluster)
+#library(cluster)
 
 #Read spreadsheet file
 grocery_entries <- read.csv(file.choose())
@@ -38,7 +38,7 @@ plot(sum_ages)
 
 #kmeans --Yousri
 name_total_age<-cbind(grocery_entries[5],grocery_entries[3],grocery_entries[6])
-#x<-readline()
+n<-as.numeric(readline("Enter number of clusters"))
 keameans<-cbind(grocery_entries[3],grocery_entries[6])
-result<-kmeans(keameans,centers = 10)
+result<-kmeans(keameans,centers =n)
 final_result<-cbind(name_total_age,result$cluster)
