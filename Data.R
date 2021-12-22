@@ -19,8 +19,8 @@ CompCashCredit <- c(sum_cash,sum_credit)
 barplot(CompCashCredit,names.arg = c('Cash','Credit'),horiz = FALSE,col = c(rgb(0,1,0),rgb(1,0,0)))
 
 #City and Total Spent comparison -Jimmy
-
-
+city_total <- cbind(grocery_entries[3], grocery_entries[7])
+sum_cities<-aggregate(total ~city ,city_total,sum)
 
 
 
