@@ -5,12 +5,16 @@
 #install.packages('ggplot2')
 # Loading package
 #library(ClusterR)
+<<<<<<< HEAD
 library(cluster)
 library(gridExtra)
 library(ggplot2)
 library(grid)
 library(arules)
 
+=======
+#library(cluster)
+>>>>>>> 3ff44982b86575dd8b3a7465fb787ea0be8aa788
 
 #Read spreadsheet file
 grocery_entries <- read.csv(file.choose())
@@ -24,8 +28,8 @@ CompCashCredit <- c(sum_cash,sum_credit)
 barplot(CompCashCredit,names.arg = c('Cash','Credit'),horiz = FALSE,col = c(rgb(0,1,0),rgb(1,0,0)))
 
 #City and Total Spent comparison -Jimmy
-
-
+city_total <- cbind(grocery_entries[3], grocery_entries[7])
+sum_cities<-aggregate(total ~city ,city_total,sum)
 
 
 
@@ -43,7 +47,8 @@ plot(sum_ages)
 
 #kmeans --Yousri
 name_total_age<-cbind(grocery_entries[5],grocery_entries[3],grocery_entries[6])
-k<-readline("Enter number of clusters: ")
+
+x<-readline("Enter number of clusters: ")
 keameans<-cbind(grocery_entries[3],grocery_entries[6])
 result<-kmeans(keameans,centers = k)
 final_result<-cbind(name_total_age,result$cluster)
@@ -53,8 +58,5 @@ final_result<-cbind(name_total_age,result$cluster)
 
 
 
-#Association Rules --Sewelam
-minsup <- readline("Enter minimum support: ")
-minconf <- readline("Enter minimum confidence: ")
-asoc_rules <- apriori(,parameter = list(supp = minsup,conf = minconf))
-write.csv(as(asoc_rules,"data.frame"),file = "pog.csv")
+
+
