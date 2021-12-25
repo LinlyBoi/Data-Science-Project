@@ -47,24 +47,18 @@ plot(sum_ages)
 
 #kmeans --Yousri
 name_total_age<-cbind(grocery_entries[5],grocery_entries[3],grocery_entries[6])
-
-x<-readline("Enter number of clusters: ")
-keameans<-cbind(grocery_entries[3],grocery_entries[6])
-result<-kmeans(keameans,centers = k)
-final_result<-cbind(name_total_age,result$cluster)
-
-#Association Rules --Sewelam
-minsup <- readline("Enter minimum support: ")
-minconf <- readline("Enter minimum confidence: ")
-asoc_rules <- apriori(,parameter = list(supp = minsup,conf = minconf))
-write.csv(as(asoc_rules,"data.frame"),file = "pog.csv")
-
-n<-as.numeric(readline("Enter number of clusters"))
+n<-as.numeric(readline("Enter number of clusters: "))
 keameans<-cbind(grocery_entries[3],grocery_entries[6])
 result<-kmeans(keameans,centers =n)
 final_result<-cbind(name_total_age,result$cluster)
 
-
+#Association Rules --Sewelam
+clean_data <- grocery_entries[,-5]
+minsup <- as.numeric(readline("Enter minimum support: "))
+minconf <- as.numeric(readline("Enter minimum confidence: "))
+asoc_rules <- apriori(clean_data,parameter = list(supp = minsup,conf = minconf))
+asociation_rules <- inspect(asoc_rules)
+write.csv(as(asoc_rules,"data.frame"),file = "Output.csv")
 
 
 
