@@ -5,16 +5,16 @@
 #install.packages('ggplot2')
 # Loading package
 #library(ClusterR)
-<<<<<<< HEAD
+
 library(cluster)
 library(gridExtra)
 library(ggplot2)
 library(grid)
 library(arules)
 
-=======
+
 #library(cluster)
->>>>>>> 3ff44982b86575dd8b3a7465fb787ea0be8aa788
+
 
 #Read spreadsheet file
 grocery_entries <- read.csv(file.choose())
@@ -53,7 +53,16 @@ keameans<-cbind(grocery_entries[3],grocery_entries[6])
 result<-kmeans(keameans,centers = k)
 final_result<-cbind(name_total_age,result$cluster)
 
+#Association Rules --Sewelam
+minsup <- readline("Enter minimum support: ")
+minconf <- readline("Enter minimum confidence: ")
+asoc_rules <- apriori(,parameter = list(supp = minsup,conf = minconf))
+write.csv(as(asoc_rules,"data.frame"),file = "pog.csv")
 
+n<-as.numeric(readline("Enter number of clusters"))
+keameans<-cbind(grocery_entries[3],grocery_entries[6])
+result<-kmeans(keameans,centers =n)
+final_result<-cbind(name_total_age,result$cluster)
 
 
 
