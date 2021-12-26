@@ -11,10 +11,11 @@ library(gridExtra)
 library(ggplot2)
 library(grid)
 library(arules)
+library(RColorBrewer)
 
 
 #library(cluster)
-
+coul <- brewer.pal(5, "Set2")
 
 #Read spreadsheet file
 grocery_entries <- read.csv(file.choose())
@@ -25,13 +26,16 @@ cash_credit <- cbind(grocery_entries[3], grocery_entries[8])
 sum_cash <-sum(cash_credit[which(cash_credit$paymentType=='Cash'),1])
 sum_credit <-sum(cash_credit[which(cash_credit$paymentType=='Credit'),1])
 CompCashCredit <- c(sum_cash,sum_credit)
-barplot(CompCashCredit,names.arg = c('Cash','Credit'),horiz = FALSE,col = c(rgb(0,1,0),rgb(1,0,0)))
+barplot(CompCashCredit,names.arg = c('Cash','Credit'),horiz = FALSE,col = coul)
 
 #City and Total Spent comparison -Jimmy
 city_total <- cbind(grocery_entries[3], grocery_entries[7])
 sum_cities<-aggregate(total ~city ,city_total,sum)
-
-
+pie(sum_cities$total
+        ,col = coul
+        ,labels =   sum_cities$city
+        ,main = "Cities and total spent")
+        
 
 
 #Compare between ages and their total spent (Youssri)
@@ -42,6 +46,7 @@ plot(sum_ages)
 
 #Distribution of spending - Abdo
 
+plot(grocery_entries$total, col = coul,type = "l", main = "spending")
 
 
 
@@ -51,6 +56,7 @@ n<-as.numeric(readline("Enter number of clusters: "))
 keameans<-cbind(grocery_entries[3],grocery_entries[6])
 result<-kmeans(keameans,centers =n)
 final_result<-cbind(name_total_age,result$cluster)
+
 
 #Association Rules --Sewelam
 clean_data <- grocery_entries[,-5]
